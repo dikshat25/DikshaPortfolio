@@ -102,22 +102,22 @@ export function AchievementCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-  const { setCurrentTrack, isPlaying } = usePlayer();
+  const { loadTrack, isPlaying } = usePlayer();
 
   const activeAchievement = achievements[activeIndex];
 
   useEffect(() => {
-    // Update global player when achievement changes
+    // Auto-play when achievement changes
     if (activeAchievement) {
-      setCurrentTrack({
+      loadTrack({
         id: activeAchievement.id,
         title: activeAchievement.title,
         artist: "Diksha Thongire",
         type: "achievement",
-        audioUrl: `https://example.com/audio/achievement-${activeAchievement.id}.mp3`, // Placeholder
-      });
+        audioUrl: `https://example.com/audio/achievement-${activeAchievement.id}.mp3`,
+      }, true); // auto-play enabled
     }
-  }, [activeIndex, activeAchievement, setCurrentTrack]);
+  }, [activeIndex, activeAchievement, loadTrack]);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);

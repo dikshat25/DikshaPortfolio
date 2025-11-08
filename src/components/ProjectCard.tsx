@@ -30,17 +30,31 @@ export function ProjectCard({
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     
-    // Load track into player (without autoplay)
+    // Load track into player and auto-play
     loadTrack({
       id: projectId,
       title: title,
       artist: "Diksha Thongire",
       type: "project",
       coverImage: image,
-      audioUrl: `https://example.com/audio/${projectId}.mp3`, // Placeholder
-    }, false);
+      audioUrl: `https://example.com/audio/${projectId}.mp3`,
+    }, true); // auto-play enabled
     
     // Navigate to project detail page
+    navigate(`/project/${projectId}`);
+  };
+
+  const handleCardClick = () => {
+    // Also auto-play when clicking anywhere on card
+    loadTrack({
+      id: projectId,
+      title: title,
+      artist: "Diksha Thongire",
+      type: "project",
+      coverImage: image,
+      audioUrl: `https://example.com/audio/${projectId}.mp3`,
+    }, true);
+    
     navigate(`/project/${projectId}`);
   };
 
@@ -57,7 +71,7 @@ export function ProjectCard({
         </Button>
       </div>
       
-      <div className="cursor-pointer" onClick={() => navigate(`/project/${projectId}`)}>
+      <div className="cursor-pointer" onClick={handleCardClick}>
         {/* Project Image */}
         <div className="relative h-48 overflow-hidden bg-spotify-hover">
           <img

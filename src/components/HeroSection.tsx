@@ -25,33 +25,29 @@ export function HeroSection() {
             </p>
             
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+              <span>Thane, Maharashtra, India</span>
+              <span>•</span>
               <span>CS @ VJTI</span>
               <span>•</span>
               <span>Design Head @ CoC</span>
-              <span>•</span>
-              <span>3 Projects</span>
             </div>
 
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <Button
                 size="lg"
                 onClick={() => {
-                  const projectsSection = document.getElementById('projects');
-                  if (projectsSection) {
-                    // Smooth scroll through all sections
-                    const sections = ['projects', 'skills', 'achievements'];
-                    let currentIndex = 0;
-                    
-                    const scrollToNext = () => {
-                      if (currentIndex < sections.length) {
-                        const section = document.getElementById(sections[currentIndex]);
-                        section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        currentIndex++;
-                        setTimeout(scrollToNext, 1500);
-                      }
-                    };
-                    scrollToNext();
-                  }
+                  const sections = ['projects', 'skills', 'achievements'];
+                  let currentIndex = 0;
+                  
+                  const scrollToNext = () => {
+                    if (currentIndex < sections.length) {
+                      const section = document.getElementById(sections[currentIndex]);
+                      section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      currentIndex++;
+                      setTimeout(scrollToNext, 2000);
+                    }
+                  };
+                  scrollToNext();
                 }}
                 className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 shadow-lg hover:scale-105 transition-transform"
               >
@@ -62,16 +58,12 @@ export function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="rounded-full border-foreground/20 hover:border-foreground/40 hover:bg-spotify-hover"
-                asChild
+                onClick={() => {
+                  window.open("https://www.linkedin.com/in/diksha-thongire-88a51728a", "_blank");
+                }}
               >
-                <a
-                  href="https://www.linkedin.com/in/diksha-thongire-88a51728a"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Check Full Profile
-                </a>
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Check Full Profile
               </Button>
             </div>
           </div>

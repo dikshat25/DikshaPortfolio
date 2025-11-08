@@ -17,6 +17,7 @@ const mainItems = [
   { title: "Projects", url: "#projects", icon: Briefcase },
   { title: "Skills", url: "#skills", icon: Code2 },
   { title: "Achievements", url: "#achievements", icon: Trophy },
+  { title: "Leadership", url: "/leadership", icon: Trophy },
   { title: "Contact", url: "/contact", icon: Mail },
 ];
 

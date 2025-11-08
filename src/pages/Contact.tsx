@@ -14,14 +14,16 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
+    project: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Create mailto link
-    const mailtoLink = `mailto:diksha.thongire257@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(formData.email)}`;
+    const projectInfo = formData.project ? `%0D%0AInspired by: ${encodeURIComponent(formData.project)}` : '';
+    const mailtoLink = `mailto:diksha.thongire257@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}${projectInfo}%0D%0A%0D%0AFrom: ${encodeURIComponent(formData.email)}`;
     
     window.location.href = mailtoLink;
     
@@ -30,7 +32,7 @@ export default function Contact() {
       description: "Your default email app will open with the message."
     });
     
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", message: "", project: "" });
   };
 
   const contactMethods = [
@@ -40,13 +42,6 @@ export default function Contact() {
       value: "diksha.thongire257@gmail.com",
       link: "mailto:diksha.thongire257@gmail.com",
       color: "text-red-400"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+91 XXXXX XXXXX",
-      link: "tel:+91XXXXXXXXXX",
-      color: "text-green-400"
     },
     {
       icon: Github,
@@ -65,7 +60,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Location",
-      value: "Mumbai, India",
+      value: "Thane, Maharashtra, India",
       link: null,
       color: "text-emerald-400"
     }
@@ -135,6 +130,23 @@ export default function Contact() {
                   placeholder="your.email@example.com"
                   className="bg-background"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Which Project Inspired You?
+                </label>
+                <select
+                  value={formData.project}
+                  onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+                  className="w-full px-3 py-2 rounded-md bg-background border border-input text-foreground"
+                >
+                  <option value="">Select a project (optional)</option>
+                  <option value="MealMatch">MealMatch</option>
+                  <option value="BooKaro">BooKaro</option>
+                  <option value="Text-to-Speech System">Text-to-Speech System</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
 
               <div>

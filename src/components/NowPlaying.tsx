@@ -1,9 +1,9 @@
 import { usePlayer } from "@/contexts/PlayerContext";
 import { Card } from "@/components/ui/card";
-import { Music, Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
+import { RotatingDisc } from "@/components/RotatingDisc";
 
 export function NowPlaying() {
   const { 
@@ -54,31 +54,12 @@ export function NowPlaying() {
         </div>
 
         <div className="flex items-center gap-4 p-3 md:p-4">
-          {/* Album Art with rotating animation */}
-          <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-spotify-hover flex-shrink-0">
-            {currentTrack.coverImage ? (
-              <img
-                src={currentTrack.coverImage}
-                alt={currentTrack.title}
-                className={cn(
-                  "w-full h-full object-cover",
-                  isPlaying && "animate-[spin_3s_linear_infinite]"
-                )}
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <Music className={cn(
-                  "h-6 w-6 text-muted-foreground",
-                  isPlaying && "animate-pulse"
-                )} />
-              </div>
-            )}
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-              </div>
-            )}
-          </div>
+          {/* Rotating Disc */}
+          <RotatingDisc 
+            isPlaying={isPlaying} 
+            coverImage={currentTrack.coverImage}
+            size="md"
+          />
 
           {/* Track Info */}
           <div className="flex-1 min-w-0">
