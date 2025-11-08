@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Code, Calendar, TrendingUp, Play } from "lucide-react";
+import { Github, Calendar, TrendingUp, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { usePlayer } from "@/contexts/PlayerContext";
 
@@ -13,6 +13,7 @@ interface ProjectCardProps {
   date: string;
   stats: string;
   projectId: string;
+  githubUrl?: string;
 }
 
 export function ProjectCard({
@@ -23,6 +24,7 @@ export function ProjectCard({
   date,
   stats,
   projectId,
+  githubUrl,
 }: ProjectCardProps) {
   const navigate = useNavigate();
   const { loadTrack } = usePlayer();
@@ -117,6 +119,23 @@ export function ProjectCard({
               {stats}
             </span>
           </div>
+
+          {/* GitHub Button */}
+          {githubUrl && (
+            <div className="pt-3 border-t border-spotify-hover" onClick={(e) => e.stopPropagation()}>
+              <Button
+                size="sm"
+                variant="outline"
+                asChild
+                className="w-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+              >
+                <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
+                  <Github className="h-4 w-4" />
+                  View on GitHub
+                </a>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </Card>

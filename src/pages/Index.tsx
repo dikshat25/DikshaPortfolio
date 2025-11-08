@@ -3,7 +3,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { HeroSection } from "@/components/HeroSection";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SkillsSection } from "@/components/SkillsSection";
-import { AchievementCarousel } from "@/components/AchievementCarousel";
+import { AchievementsTabs } from "@/components/AchievementsTabs";
 import { NowPlaying } from "@/components/NowPlaying";
 import { PlayerProvider } from "@/contexts/PlayerContext";
 import { useEffect } from "react";
@@ -22,6 +22,7 @@ const projects = [
     date: "January 2025",
     stats: "6K+ recipes",
     projectId: "mealmatch",
+    githubUrl: "https://github.com/dikshat25/THE-HEIRS-INHERITANCE",
   },
   {
     title: "BooKaro",
@@ -32,6 +33,7 @@ const projects = [
     date: "March 2025",
     stats: "2K+ books",
     projectId: "bookaro",
+    githubUrl: "https://github.com/Prachi-Shende/BooKaro",
   },
   {
     title: "Text-to-Speech System",
@@ -42,6 +44,7 @@ const projects = [
     date: "February 2025",
     stats: "3K audio pairs",
     projectId: "text-to-speech",
+    githubUrl: "https://github.com/dikshat25/TextToSpeech",
   },
 ];
 
@@ -126,10 +129,8 @@ const Index = () => {
               </div>
             </section>
 
+            <AchievementsTabs />
             <SkillsSection />
-            <div id="achievements">
-              <AchievementCarousel />
-            </div>
           </div>
         </main>
 
